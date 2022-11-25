@@ -14,6 +14,7 @@ document.getElementById("today-date").textContent = today;
 
 const askForCoords = () =>{
     navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError);
+    
 }
 
 const handleGeoSuccess = (position) => {
@@ -24,6 +25,7 @@ const handleGeoSuccess = (position) => {
         lon
     };
 
+    console.log(navigator.geolocation.getCurrentPosition);
     getCurrentWeather(lat, lon);
     getWeather(lat, lon);
 }
@@ -48,10 +50,10 @@ const getCurrentWeather = async(lat, lon) => {
 }
 
 const currentWeatherRender = (data) => {
-    let temp  = data.main.temp
-    console.log(temp.toString().padEnd('0'));
+
     changeWeatherIcon(data);
 
+    document.getElementById("location").textContent = `${data.name}`;
     document.getElementById("temp").textContent = `${data.main.temp}℉`;
     document.getElementById("description").textContent = `${data.weather[0].description.toUpperCase()}`;
     document.getElementById("temp-max").textContent = `${data.main.temp_max}℉`;
